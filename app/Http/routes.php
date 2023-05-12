@@ -53,4 +53,9 @@ Route::group(['middleware' => ['web']], function () {
 
         return redirect('/');
     });
+    /**
+     * crm
+     */
+    Route::get('/homepage', 'HomepageController@homepage');
+    Route::get('/news', 'NewsController@news');
 });
