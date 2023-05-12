@@ -58,4 +58,4 @@ Route::group(['middleware' => ['web']], function () {
      */
     Route::get('/homepage', 'HomepageController@homepage');
     Route::get('/news', 'NewsController@news');
-});
+});;
