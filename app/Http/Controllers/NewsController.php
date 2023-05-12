@@ -10,6 +10,6 @@ class NewsController extends Model
 {
     public function news()
     {
-        return view(';news');
+        return view('news');
     }
 }

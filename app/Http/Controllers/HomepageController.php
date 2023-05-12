@@ -10,6 +10,6 @@ class HomepageController extends Model
 {
     public function homepage()
     {
-        return view('homepage');;
+        return view('homepage');
     }
 }
