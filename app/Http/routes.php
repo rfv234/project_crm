@@ -56,6 +56,10 @@ Route::group(['middleware' => ['web']], function () {
     /**
      * crm
      */
-    Route::get('/homepage', 'HomepageController@homepage');
-    Route::get('/news', 'NewsController@news');
+    Route::get('/homepage', function () {
+        return view('homepage');
+    });
+    Route::get('/news', function () {
+        return view('news');
+    });
 });
