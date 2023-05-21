@@ -15245,7 +15245,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.divs[data-v-1c468c99] {\n    margin-left: 15px;\n    padding: 5px;\n    border: solid 2px;\n    margin-top: 10px;\n    width: 50%;\n}\n.tasks[data-v-1c468c99] {\n    margin: 10px;\n}\n#chel[data-v-1c468c99] {\n    width: 170px;\n    height: 170px;\n    position: absolute;\n    left: 60%;\n    top: 10px;\n}\n#add[data-v-1c468c99] {\n    margin: 15px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.divs[data-v-1c468c99] {\r\n    margin-left: 15px;\r\n    padding: 5px;\r\n    border: solid 2px;\r\n    margin-top: 10px;\r\n    width: 50%;\n}\n.tasks[data-v-1c468c99] {\r\n    margin: 10px;\n}\n#chel[data-v-1c468c99] {\r\n    width: 170px;\r\n    height: 170px;\r\n    position: absolute;\r\n    left: 60%;\r\n    top: 10px;\n}\n#add[data-v-1c468c99] {\r\n    margin: 15px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
