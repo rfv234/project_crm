@@ -10,6 +10,7 @@
 <div id="app">
     <h2>Home</h2>
     <app-test></app-test>
+    <vue-button></vue-button>
 </div>
 <script src="{{ mix('js/app.js') }}"></script>
 </body>
