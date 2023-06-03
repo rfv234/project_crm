@@ -19,9 +19,5 @@ Route::get('/', function () {
 /**
  * crm
  */
-Route::get('/homepage', function () {
-    return view('homepage');
-});
-Route::get('/news', function () {
-    return view('news');
-});
+Route::get('/homepage', [\App\Http\Controllers\HomepageController::class, 'homepage']);
+Route::get('/news', [\App\Http\Controllers\NewsController::class, 'news']);

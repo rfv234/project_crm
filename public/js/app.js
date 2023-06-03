@@ -14984,26 +14984,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "VueNews",
+  props: ['news'],
   data: function data() {
-    return {
-      news: [{
-        photo: 'images/sw.jpg',
-        name: 'Власти Швейцарии связали дефицит лекарств с конфликтом на Украине',
-        text: 'Перебои с поставками лекарств в Швейцарии выросли на 46% в период с 2021 по 2022 год, отчасти причиной этого является конфликт на Украине, говорится в опубликованном докладе минэкономики Швейцарии. В прошлом году бюро уведомлений зафиксировало 201 нарушение поставок, что стало новым рекордом. Это на 46% больше, чем в 2021 году (137 нарушений), и почти на 10% больше, чем в 2019 году (184). Более чем в половине случаев нарушения, наблюдавшиеся в 2022 году, были связаны с антибиотиками (35%) или обезболивающими (19%), - сказано в документе, опубликованном на сайте Федерального совета.'
-      }, {
-        photo: 'images/2d2618c20d17f3e1921ec0d98f0e45.png',
-        name: 'Выбраться с МЖК: власти три года обещают построить новую дорогу на Доватора — спасет ли она от пробок',
-        text: 'Октябрьский район — второй по численности населения в Новосибирске. Из-за большого количества автомобилей, а зимой — еще и из-за гор снега, там часто собираются пробки, а в общественном транспорте сложно найти место. Но ситуацию хотят исправить, как минимум для жителей МЖК и Плющихинского жилмассива — власти уже несколько лет обещают начать строить новую дорогу на улице Доватора. Она должна пройти от улицы Татьяны Снежиной до Гусинобродского шоссе. НГС выяснил, где собираются проложить дорогу, во сколько она обойдется бюджету и когда автомобилисты смогут по ней ездить.'
-      }, {
-        photo: 'images/kakoe-morozhenoe-mozhno-est-esli-vy-na-diete_1656418757679199039.jpg',
-        name: 'Лето начинается с мороженого: где искать любимые эскимо, стаканчики и рожки',
-        text: 'Летом мороженого хочется практически каждый день: эскимо на прогулке, рожок после обеда и большой брикет для семейных вечеров. Не только вкусно, но и освежающе — для многих новосибирцев вкус лета складывается из любимого лакомства, свежих овощей и фруктов.'
-      }, {
-        photo: 'images/nissan-z-proto-lateral.jpg',
-        name: 'В Новосибирске начали предлагать новые японские спорткары за 9 миллионов — как они выглядят и сколько ждать машину',
-        text: 'Новосибирцам стали доступны для покупки японские спорткары — объявления публикуют новосибирские автодилеры, а везут авто через третьи страны несколько месяцев. Корреспондент НГС пообщался с продавцами и автоэкспертами и выяснил, откуда везут машины, во сколько они обойдутся и есть ли на такой сегмент спрос у сибиряков.'
-      }]
-    };
+    return {};
+  },
+  mounted: function mounted() {
+    console.log(this.news);
   }
 });
 
@@ -15186,9 +15172,9 @@ var _hoisted_9 = /*#__PURE__*/_withScopeId(function () {
 });
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.news, function (novelty) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [_hoisted_3, _hoisted_4, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.news, function (novelty) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(novelty.name), 1 /* TEXT */), _hoisted_5]);
-  }), 256 /* UNKEYED_FRAGMENT */))]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.news, function (item) {
+  }), 256 /* UNKEYED_FRAGMENT */))]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.news, function (item) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.name), 1 /* TEXT */), _hoisted_7, item.photo ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("img", {
       key: 0,
       src: item.photo
