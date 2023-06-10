@@ -14,6 +14,9 @@
     <img v-if="item.photo" v-bind:src=item.photo>
     <br>
     <span>{{ item.text }}</span>
+    <a v-bind:href=item.url>
+      <button>Редактировать</button>
+    </a>
   </div>
 </template>
 
