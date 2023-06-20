@@ -4,7 +4,15 @@
 </head>
 <body>
 <div id="app">
-    <vue-create-news></vue-create-news>
+    @php
+        if (!isset($new))
+        {
+            $new = new \App\Models\News();
+            $new->name = 'новость';
+            $new->text = 'текст новости';
+        }
+    @endphp
+    <vue-create-news :novelty="{{$new}}"></vue-create-news>
 </div>
 <script src="{{mix('js/app.js')}}"></script>
 </body>

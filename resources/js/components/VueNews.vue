@@ -1,5 +1,10 @@
 <template>
   <div id="ngs">Народная премия NGS.RU</div>
+ <div class="edit">
+   <a href='/create_news'>
+     <button>Создать новость</button>
+   </a>
+ </div>
   <div id="all_news">
     <h3>Все новости</h3>
     <hr>
@@ -14,10 +19,14 @@
     <img v-if="item.photo" v-bind:src=item.photo>
     <br>
     <span>{{ item.text }}</span>
-    <a v-bind:href=item.url>
-      <button>Редактировать</button>
-    </a>
+    <br>
+    <div class="edit">
+      <a v-bind:href=item.url class="url">
+        <button>Редактировать</button>
+      </a>
+    </div>
   </div>
+
 </template>
 
 <script>
@@ -68,5 +77,16 @@ export default {
 img {
   width: 700px;
   height: 400px;
+}
+
+.edit {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+}
+
+.url {
+  display: block;
 }
 </style>

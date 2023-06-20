@@ -23,3 +23,4 @@ Route::get('/homepage', [\App\Http\Controllers\HomepageController::class, 'homep
 Route::get('/news', [\App\Http\Controllers\NewsController::class, 'news']);
 Route::get('/create_news', [\App\Http\Controllers\NewsController::class, 'create']);
 Route::get('/save_news', [\App\Http\Controllers\NewsController::class, 'save']);
+Route::get('/delete', [\App\Http\Controllers\NewsController::class, 'delete']);

@@ -24,7 +24,14 @@ class NewsController extends Controller
 
     public function create(Request $request)
     {
-        return view('create_news');
+        if (isset($request->id)) {
+            $new = \App\Models\News::query()->where('id', $request->id)->first();
+            return view('create_news', [
+                'new' => $new
+            ]);
+        } else {
+            return view('create_news');
+        }
     }
 
     public function save(Request $request)
@@ -33,6 +40,11 @@ class NewsController extends Controller
         $article->name = $request->news_name;
         $article->text = $request->text;
         $article->save();
+        return redirect('/news');
+    }
+    public function delete(Request $request)
+    {
+        $new = \App\Models\News::query()->where('id', $request -> id)->delete();
         return redirect('/news');
     }
 }
