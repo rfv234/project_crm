@@ -4,6 +4,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\NewsRequest;
 use App\Models\News;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -34,17 +35,24 @@ class NewsController extends Controller
         }
     }
 
-    public function save(Request $request)
+    public function save(NewsRequest $request)
     {
-        $article = new News();
+        if (isset ($request->id)) {
+            $article = News::query()->where('id', $request->id)->first();
+        }
+      //  dd($article, $request->all());
+        if (!isset($article)) {
+            $article = new News();
+        }
         $article->name = $request->news_name;
         $article->text = $request->text;
         $article->save();
         return redirect('/news');
     }
+
     public function delete(Request $request)
     {
-        $new = \App\Models\News::query()->where('id', $request -> id)->delete();
+        $new = \App\Models\News::query()->where('id', $request->id)->delete();
         return redirect('/news');
     }
 }

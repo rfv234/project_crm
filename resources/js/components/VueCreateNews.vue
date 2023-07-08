@@ -1,6 +1,6 @@
 <template>
   <form v-on:submit="onSubmit" action="/save_news" ref="form">
-
+    <input type="hidden" name="id" v-model="id">
     <p>
       <input type="text" name="news_name" placeholder="Название" v-model="news_name" id="inp1">
     </p>
@@ -33,6 +33,7 @@ export default {
       photo: null,
       text: this.novelty.text,
       deletion_url: '/delete?id=' + this.novelty.id ?? '',
+      id: this.novelty.id
     }
   },
   methods: {

@@ -14934,7 +14934,8 @@ __webpack_require__.r(__webpack_exports__);
       news_name: this.novelty.name,
       photo: null,
       text: this.novelty.text,
-      deletion_url: (_ref = '/delete?id=' + this.novelty.id) !== null && _ref !== void 0 ? _ref : ''
+      deletion_url: (_ref = '/delete?id=' + this.novelty.id) !== null && _ref !== void 0 ? _ref : '',
+      id: this.novelty.id
     };
   },
   methods: {
@@ -15096,23 +15097,29 @@ var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
 var _hoisted_4 = [_hoisted_3];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
-    onSubmit: _cache[2] || (_cache[2] = function () {
+    onSubmit: _cache[3] || (_cache[3] = function () {
       return $options.onSubmit && $options.onSubmit.apply($options, arguments);
     }),
     action: "/save_news",
     ref: "form"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    type: "hidden",
+    name: "id",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.id = $event;
+    })
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.id]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "text",
     name: "news_name",
     placeholder: "Название",
-    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.news_name = $event;
     }),
     id: "inp1"
   }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.news_name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    <p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("      <input type=\"file\" name=\"photo\" v-model=\"photo\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    </p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     name: "text",
     placeholder: "Текст новости",
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $data.text = $event;
     }),
     id: "area"
