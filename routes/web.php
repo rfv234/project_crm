@@ -24,3 +24,4 @@ Route::get('/news', [\App\Http\Controllers\NewsController::class, 'news']);
 Route::get('/create_news', [\App\Http\Controllers\NewsController::class, 'create']);
 Route::get('/save_news', [\App\Http\Controllers\NewsController::class, 'save']);
 Route::get('/delete', [\App\Http\Controllers\NewsController::class, 'delete']);
+Route::get('/your_error', [\App\Http\Requests\NewsRequest::class, 'withValidator']);
