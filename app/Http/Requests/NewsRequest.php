@@ -7,6 +7,7 @@ use Illuminate\Validation\Validator;
 
 class NewsRequest extends FormRequest
 {
+    protected $redirect='/your_error';
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -35,7 +36,8 @@ class NewsRequest extends FormRequest
         $validator->after(function ($validator) {
             if (!empty($validator->errors()->all())) {
                 $validator->errors()->add('field', 'В этом поле ошибка');
-                return redirect('/your_error');
+               // dd($validator->errors()->all());
+               // redirect('/your_error');
             }
         });
     }

@@ -14935,14 +14935,32 @@ __webpack_require__.r(__webpack_exports__);
       photo: null,
       text: this.novelty.text,
       deletion_url: (_ref = '/delete?id=' + this.novelty.id) !== null && _ref !== void 0 ? _ref : '',
-      id: this.novelty.id
+      id: this.novelty.id,
+      name_errors: [],
+      text_errors: []
     };
   },
   methods: {
     onSubmit: function onSubmit(e) {
       e.preventDefault();
-      console.log(this.news_name, this.text, this.$refs.form);
-      this.$refs.form.submit();
+      this.name_errors = [];
+      this.text_errors = [];
+      if (!this.news_name) {
+        this.name_errors.push('Требуется указать название новости');
+      }
+      if (!this.text) {
+        this.text_errors.push('Требуется написать текст новости');
+      }
+      if (this.news_name.length > 128) {
+        this.name_errors.push('Слишком длинное название');
+      }
+      if (this.text.length > 1024) {
+        this.text_errors.push('Слишком длинный текст');
+      }
+      if (this.name_errors.length === 0 && this.text_errors.length === 0) {
+        console.log(this.news_name, this.text, this.$refs.form);
+        this.$refs.form.submit();
+      }
     }
   }
 });
@@ -15084,17 +15102,23 @@ __webpack_require__.r(__webpack_exports__);
 var _withScopeId = function _withScopeId(n) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-0ecc7d8c"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
 };
-var _hoisted_1 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_1 = {
+  key: 0
+};
+var _hoisted_2 = {
+  key: 0
+};
+var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "submit",
     value: "Сохранить"
   })], -1 /* HOISTED */);
 });
-var _hoisted_2 = ["href"];
-var _hoisted_3 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_4 = ["href"];
+var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", null, "Удалить", -1 /* HOISTED */);
 });
-var _hoisted_4 = [_hoisted_3];
+var _hoisted_6 = [_hoisted_5];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", {
     onSubmit: _cache[3] || (_cache[3] = function () {
@@ -15116,16 +15140,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $data.news_name = $event;
     }),
     id: "inp1"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.news_name]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    <p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("      <input type=\"file\" name=\"photo\" v-model=\"photo\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    </p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.news_name]]), $data.name_errors.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.name_errors, function (error) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error), 1 /* TEXT */);
+  }), 256 /* UNKEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    <p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("      <input type=\"file\" name=\"photo\" v-model=\"photo\">"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("    </p>"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("textarea", {
     name: "text",
     placeholder: "Текст новости",
     "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $data.text = $event;
     }),
     id: "area"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.text]])]), _hoisted_1], 544 /* HYDRATE_EVENTS, NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.text]]), $data.text_errors.length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("ul", null, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.text_errors, function (error) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("li", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(error), 1 /* TEXT */);
+  }), 256 /* UNKEYED_FRAGMENT */))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_3], 544 /* HYDRATE_EVENTS, NEED_PATCH */), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
     href: $data.deletion_url
-  }, _hoisted_4, 8 /* PROPS */, _hoisted_2)])], 64 /* STABLE_FRAGMENT */);
+  }, _hoisted_6, 8 /* PROPS */, _hoisted_4)])], 64 /* STABLE_FRAGMENT */);
 }
 
 /***/ }),
@@ -15385,7 +15413,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#inp1[data-v-0ecc7d8c] {\r\n  width: 50%;\n}\n#area[data-v-0ecc7d8c] {\r\n  width: 50%;\r\n  height: 80px;\n}\r\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#inp1[data-v-0ecc7d8c] {\r\n  width: 50%;\n}\n#area[data-v-0ecc7d8c] {\r\n  width: 50%;\r\n  height: 80px;\n}\nli[data-v-0ecc7d8c] {\r\n  color: red;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

@@ -40,7 +40,7 @@ class NewsController extends Controller
         if (isset ($request->id)) {
             $article = News::query()->where('id', $request->id)->first();
         }
-      //  dd($article, $request->all());
+        //  dd($article, $request->all());
         if (!isset($article)) {
             $article = new News();
         }
@@ -54,5 +54,10 @@ class NewsController extends Controller
     {
         $new = \App\Models\News::query()->where('id', $request->id)->delete();
         return redirect('/news');
+    }
+
+    public function showError()
+    {
+        return view('your_error');
     }
 }
