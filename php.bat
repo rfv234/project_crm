@@ -1,0 +1,1 @@
+C:\OSPanel\modules\php\PHP_7.2\php.exe %1 %2 %3 %4
