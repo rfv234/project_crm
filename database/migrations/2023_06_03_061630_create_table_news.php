@@ -18,6 +18,8 @@ class CreateTableNews extends Migration
             $table->string('name');
             $table->string('photo');
             $table->text('text');
+            $table->integer('author_id');
+            $table->integer('order');
             $table->timestamps();
         });
     }

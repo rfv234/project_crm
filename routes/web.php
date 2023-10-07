@@ -19,9 +19,12 @@ Route::get('/', function () {
 /**
  * crm
  */
-Route::get('/homepage', [\App\Http\Controllers\HomepageController::class, 'homepage']);
-Route::get('/news', [\App\Http\Controllers\NewsController::class, 'news']);
-Route::get('/create_news', [\App\Http\Controllers\NewsController::class, 'create']);
-Route::get('/save_news', [\App\Http\Controllers\NewsController::class, 'save']);
-Route::get('/delete', [\App\Http\Controllers\NewsController::class, 'delete']);
-Route::get('/your_error', [\App\Http\Controllers\NewsController::class, 'showError']);
+Route::get('/homepage', [\App\Http\Controllers\HomepageController::class, 'homepage'])->middleware('auth');
+Route::get('/news', [\App\Http\Controllers\NewsController::class, 'news'])->middleware('auth');
+Route::get('/create_news', [\App\Http\Controllers\NewsController::class, 'create'])->middleware('auth');
+Route::get('/save_news', [\App\Http\Controllers\NewsController::class, 'save'])->middleware('auth');
+Route::get('/delete', [\App\Http\Controllers\NewsController::class, 'delete'])->middleware('auth');
+Route::get('/your_error', [\App\Http\Controllers\NewsController::class, 'showError'])->middleware('auth');
+Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
+Route::get('/check_user', [\App\Http\Controllers\LoginController::class, 'checkUser']);
+Route::get('/dislogin', [\App\Http\Controllers\LoginController::class, 'dislogin']);

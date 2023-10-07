@@ -20,6 +20,7 @@
     <br>
     <span>{{ item.text }}</span>
     <br>
+    <span>Автор: {{this.users[item.author_id-1].name}}</span>
     <div class="edit">
       <a v-bind:href=item.url class="url">
         <button>Редактировать</button>
@@ -33,7 +34,8 @@
 export default {
   name: "VueNews",
   props: [
-      'news'
+      'news',
+      'users'
   ],
   data() {
     return {
@@ -41,7 +43,7 @@ export default {
     }
   },
   mounted() {
-    console.log(this.news);
+
   }
 }
 </script>
