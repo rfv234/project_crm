@@ -1,7 +1,7 @@
 <template>
   <div id="ngs">Народная премия NGS.RU</div>
  <div class="edit">
-   <a href='/create_news'>
+   <a href='/create_news' v-if="cancreate">
      <button>Создать новость</button>
    </a>
  </div>
@@ -22,12 +22,11 @@
     <br>
     <span>Автор: {{this.users[item.author_id-1].name}}</span>
     <div class="edit">
-      <a v-bind:href=item.url class="url">
+      <a v-bind:href=item.url class="url" v-if="canedit">
         <button>Редактировать</button>
       </a>
     </div>
   </div>
-
 </template>
 
 <script>
@@ -35,11 +34,13 @@ export default {
   name: "VueNews",
   props: [
       'news',
-      'users'
+      'users',
+
   ],
   data() {
     return {
-
+      canedit: this.canedit,
+      cancreate: this.cancreate
     }
   },
   mounted() {
