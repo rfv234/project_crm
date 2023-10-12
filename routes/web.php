@@ -28,3 +28,4 @@ Route::get('/your_error', [\App\Http\Controllers\NewsController::class, 'showErr
 Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login'])->name('login');
 Route::get('/check_user', [\App\Http\Controllers\LoginController::class, 'checkUser']);
 Route::get('/dislogin', [\App\Http\Controllers\LoginController::class, 'dislogin']);
+Route::get('/users_list', [\App\Http\Controllers\NewsController::class, 'users_list']);

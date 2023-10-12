@@ -15,7 +15,7 @@ class NewsController extends Controller
 {
     public function news()
     {
-       // dd(Auth::user(), Auth::user()->permissions->first()->rule->name);
+        // dd(Auth::user(), Auth::user()->permissions->first()->rule->name);
         $news_list = \App\Models\News::query()->orderByDesc('order')->get();
         $users_list = User::query()->get();
         foreach ($news_list as $item) {
@@ -24,24 +24,26 @@ class NewsController extends Controller
         $news_list = json_encode($news_list);
         return view('news', [
             'news' => $news_list,
-            'users' => $users_list
+            'users' => $users_list,
+            'canupdate' => $this->getPermissions(2),
+            'candelete' => $this->getPermissions(3),
+            'cancreate' => $this->getPermissions(1)
         ]);
     }
 
     public function create(Request $request)
     {
         $users = User::query()->get();
+        $data = [
+            'users' => $users,
+            'canupdate' => $this->getPermissions(2),
+            'candelete' => $this->getPermissions(3),
+            'cancreate' => $this->getPermissions(1)
+        ];
         if (isset($request->id)) {
-            $new = \App\Models\News::query()->where('id', $request->id)->first();
-            return view('create_news', [
-                'new' => $new,
-                'users' => $users
-            ]);
-        } else {
-            return view('create_news', [
-                'users' => $users
-            ]);
+            $data ['new'] = \App\Models\News::query()->where('id', $request->id)->first();
         }
+        return view('create_news', $data);
     }
 
     public function save(NewsRequest $request)
@@ -67,8 +69,32 @@ class NewsController extends Controller
         return redirect('/news');
     }
 
+    public function getPermissions($rule_id, $user_id = null)
+    {
+        if ($user_id) {
+            $user = User::query()->where('id', $user_id)->first();
+        } else {
+            $user = Auth::user();
+        }
+        $permissions = $user->permissions->pluck('rule_id')->toArray();
+        return in_array($rule_id, $permissions);
+    }
+
     public function showError()
     {
         return view('your_error');
+    }
+
+    public function users_list()
+    {
+        $users = User::query()->get();
+        foreach ($users as $user) {
+            $user->cancreate = $this->getPermissions(1, $user->id);
+            $user->canupdate = $this->getPermissions(2, $user->id);
+            $user->candelete = $this->getPermissions(3, $user->id);
+        }
+        return view('users_menu', [
+            'users_list' => $users
+        ]);
     }
 }

@@ -22,7 +22,7 @@
     <br>
     <span>Автор: {{this.users[item.author_id-1].name}}</span>
     <div class="edit">
-      <a v-bind:href=item.url class="url" v-if="canedit">
+      <a v-bind:href=item.url class="url" v-if="canupdate">
         <button>Редактировать</button>
       </a>
     </div>
@@ -35,11 +35,12 @@ export default {
   props: [
       'news',
       'users',
-
+      'canupdate',
+      'cancreate'
   ],
   data() {
     return {
-      canedit: this.canedit,
+      canupdate: this.canupdate,
       cancreate: this.cancreate
     }
   },

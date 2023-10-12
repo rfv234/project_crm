@@ -42,8 +42,8 @@
       <button id="delete">Удалить</button>
     </a>
   </p>
-  <a v-bind:href="/news">
-    <button>Вернуться на главную страницу</button>
+  <a href="/news">
+   <button>Вернуться на главную страницу</button>
   </a>
 </template>
 

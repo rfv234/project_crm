@@ -11,17 +11,15 @@
             $new->name = 'новость';
             $new->text = 'текст новости';
         }
-        $permissions = Auth::user()->permissions->pluck('rule_id')->toArray();
-        $canupdate = in_array(2, $permissions);
-        $candelete = in_array(3, $permissions);
-        $canedit = in_array(2, $permissions);
-        $cancreate = in_array(1, $permissions);
+      //  $permissions = Auth::user()->permissions->pluck('rule_id')->toArray();
+      //  $canupdate = in_array(2, $permissions);
+     //   $candelete = in_array(3, $permissions);
+      //  $cancreate = in_array(1, $permissions);
     @endphp
     <vue-create-news :novelty="{{$new}}"
                      :users="{{$users}}"
                      :canupdate="{{$canupdate}}"
                      :candelete="{{$candelete}}"
-                     :canedit="{{$canedit}}"
                      :cancreate="{{$cancreate}}">
     </vue-create-news>
 </div>

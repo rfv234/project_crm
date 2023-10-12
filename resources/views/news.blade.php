@@ -21,7 +21,11 @@
     </a>
 </div>
 <div id="app">
-    <vue-news :news='{{$news}}' :users="{{$users}}"></vue-news>
+    <vue-news :news='{{$news}}'
+              :users="{{$users}}"
+              :canupdate="{{$canupdate}}"
+              :cancreate="{{$cancreate}}">
+    </vue-news>
 </div>
 <script src="{{mix('js/app.js')}}"></script>
 </body>
