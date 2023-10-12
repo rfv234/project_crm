@@ -29,3 +29,4 @@ Route::get('/login', [\App\Http\Controllers\LoginController::class, 'login'])->n
 Route::get('/check_user', [\App\Http\Controllers\LoginController::class, 'checkUser']);
 Route::get('/dislogin', [\App\Http\Controllers\LoginController::class, 'dislogin']);
 Route::get('/users_list', [\App\Http\Controllers\NewsController::class, 'users_list']);
+Route::get('/change_permission/{user_id}/{rule_id}', [\App\Http\Controllers\NewsController::class, 'change_permission']);

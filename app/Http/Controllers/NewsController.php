@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\NewsRequest;
 use App\Models\News;
+use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
@@ -96,5 +97,26 @@ class NewsController extends Controller
         return view('users_menu', [
             'users_list' => $users
         ]);
+    }
+    public function change_permission($user_id, $rule_id)
+    {
+        $permission = Permission::query()
+            ->where('user_id', $user_id)
+            ->where('rule_id', $rule_id)
+            ->first();
+        if ($permission) {
+            $permission->delete();
+        }
+        else {
+//            Permission::create([
+//                'user_id' => $user_id,
+//                'rule_id' => $rule_id
+//            ]);
+            $permission = new Permission();
+            $permission->user_id=$user_id;
+            $permission->rule_id=$rule_id;
+            $permission->save();
+        }
+        return redirect('/users_list');
     }
 }

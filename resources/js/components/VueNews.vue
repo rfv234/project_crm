@@ -1,4 +1,7 @@
 <template>
+  <a href="/users_list">
+    <button>Перейти к списку всех пользователей</button>
+  </a>
   <div id="ngs">Народная премия NGS.RU</div>
  <div class="edit">
    <a href='/create_news' v-if="cancreate">
