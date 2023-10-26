@@ -2,6 +2,12 @@
   <a href="/users_list">
     <button>Перейти к списку всех пользователей</button>
   </a>
+  <a href="/create_user/1" v-if="cancreatenewuser">
+    <button>Создать нового пользователя</button>
+  </a>
+  <a href="/create_user/0">
+    <button>Редактировать данные пользователя</button>
+  </a>
   <div id="ngs">Народная премия NGS.RU</div>
  <div class="edit">
    <a href='/create_news' v-if="cancreate">
@@ -39,12 +45,14 @@ export default {
       'news',
       'users',
       'canupdate',
-      'cancreate'
+      'cancreate',
+      'currentuser'
   ],
   data() {
     return {
       canupdate: this.canupdate,
-      cancreate: this.cancreate
+      cancreate: this.cancreate,
+      cancreatenewuser: this.currentuser === 1
     }
   },
   mounted() {

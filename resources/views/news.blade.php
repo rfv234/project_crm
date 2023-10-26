@@ -24,7 +24,8 @@
     <vue-news :news='{{$news}}'
               :users="{{$users}}"
               :canupdate="{{$canupdate}}"
-              :cancreate="{{$cancreate}}">
+              :cancreate="{{$cancreate}}"
+                :currentuser="{{\Illuminate\Support\Facades\Auth::user()->id}}">
     </vue-news>
 </div>
 <script src="{{mix('js/app.js')}}"></script>

@@ -119,4 +119,37 @@ class NewsController extends Controller
         }
         return redirect('/users_list');
     }
+    public function create_user($update)
+    {
+        if (Auth::user()->id == 1 && $update == 1)
+        {
+            return view('create_new_user');
+        }
+        elseif ($update == 0) {
+            return view('create_new_user', [
+                'currentuser' => Auth::user()
+            ]);
+        }
+        else {
+            abort(403);
+        }
+    }
+    public function save_user(Request $request)
+    {
+        if (isset($request->name) && isset($request->password) && isset($request->email))
+        {
+            if (!isset($request->id))
+            {
+                $user = new User();
+            }
+            else {
+                $user = User::query()->where('id', $request->id)->first();
+            }
+            $user->name = $request->name;
+            $user->password = $request->password;
+            $user->email = $request->email;
+            $user->save();
+        }
+        return redirect('news');
+    }
 }
