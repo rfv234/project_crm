@@ -70,6 +70,12 @@ class NewsController extends Controller
         return redirect('/news');
     }
 
+    public function delete_user($user)
+    {
+        $deleted = User::query()->where('id', $user->id)->delete();
+        return redirect('/news');
+    }
+
     public function getPermissions($rule_id, $user_id = null)
     {
         if ($user_id) {
