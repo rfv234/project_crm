@@ -32,3 +32,5 @@ Route::get('/users_list', [\App\Http\Controllers\NewsController::class, 'users_l
 Route::get('/change_permission/{user_id}/{rule_id}', [\App\Http\Controllers\NewsController::class, 'change_permission']);
 Route::get('/create_user/{update}', [\App\Http\Controllers\NewsController::class, 'create_user']);
 Route::get('/save_user', [\App\Http\Controllers\NewsController::class, 'save_user']);
+Route::get('/delete_user/{user_id}', [\App\Http\Controllers\NewsController::class, 'delete_user']);
+Route::get('/save_notify', [\App\Http\Controllers\NewsController::class, 'save_notify']);

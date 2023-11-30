@@ -37,7 +37,9 @@
             </td>
             @if(\Illuminate\Support\Facades\Auth::user()->id==1)
                 <td>
-                    <button @click="{{$user->delete_user()}}">Удалить пользователя</button>
+                    <a href="/delete_user/{{$user->id}}">
+                        <button>Удалить пользователя</button>
+                    </a>
                 </td>
             @endif
         </tr>

@@ -66,13 +66,14 @@ class NewsController extends Controller
 
     public function delete(Request $request)
     {
-        $new = \App\Models\News::query()->where('id', $request->id)->delete();
+        \App\Models\News::query()->where('id', $request->id)->delete();
         return redirect('/news');
     }
 
-    public function delete_user($user)
+    public function delete_user($user_id)
     {
-        $deleted = User::query()->where('id', $user->id)->delete();
+        User::query()->where('id', $user_id)->delete();
+        Permission::query()->where('user_id', $user_id)->delete();
         return redirect('/news');
     }
 
@@ -94,7 +95,7 @@ class NewsController extends Controller
 
     public function users_list()
     {
-        $users = User::query()->get();
+        $users = User::query()->search()->get();
         foreach ($users as $user) {
             $user->cancreate = $this->getPermissions(1, $user->id);
             $user->canupdate = $this->getPermissions(2, $user->id);
@@ -151,11 +152,15 @@ class NewsController extends Controller
             else {
                 $user = User::query()->where('id', $request->id)->first();
             }
-            $user->name = $request->name;
-            $user->password = $request->password;
-            $user->email = $request->email;
-            $user->save();
+            $user->update([
+                'name'=>$request->name,
+                'password'=>$request->password,
+                'email'=>$request->email
+            ]);
         }
         return redirect('news');
+    }
+    public function save_notify(Request $request) {
+        dd($request->all());
     }
 }

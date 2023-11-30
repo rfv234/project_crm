@@ -41,7 +41,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function permissions() {
+
+    public function permissions()
+    {
         return $this->hasMany(Permission::class, 'user_id', 'id');
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function (User $user) {
+            $user->permissions()->delete();
+        });
+        static::created(function (User $user) {
+            // ...
+        });
+        static::updated(function (User $user) {
+            // ...
+        });
+        static::deleted(function (User $user) {
+            $user->permissions()->delete();
+        });
+    }
+    public function scopeSearch($query) {
+        return $query->where('id', '<>', 1);
     }
 }
