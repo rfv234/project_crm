@@ -20,6 +20,12 @@
         <button id="exit_button">Выход</button>
     </a>
 </div>
+<div>
+    <form action="/search_news">
+        <input type="text" placeholder="Найти новость" name="search">
+        <input value="Найти" type="submit">
+    </form>
+</div>
 <div id="app">
     <vue-news :news='{{$news}}'
               :users="{{$users}}"

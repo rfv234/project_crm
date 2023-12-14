@@ -16,12 +16,12 @@ class NewsController extends Controller
 {
     public function news()
     {
-        // dd(Auth::user(), Auth::user()->permissions->first()->rule->name);
         $news_list = \App\Models\News::query()->orderByDesc('order')->get();
+        foreach ($news_list as $article) {
+            $article -> item_url = '/show_article/'.$article->id;
+            $article->url = '/create_news?id=' . $article->id;
+    }
         $users_list = User::query()->get();
-        foreach ($news_list as $item) {
-            $item->url = '/create_news?id=' . $item->id;
-        }
         $news_list = json_encode($news_list);
         return view('news', [
             'news' => $news_list,
@@ -105,6 +105,7 @@ class NewsController extends Controller
             'users_list' => $users
         ]);
     }
+
     public function change_permission($user_id, $rule_id)
     {
         $permission = Permission::query()
@@ -113,54 +114,82 @@ class NewsController extends Controller
             ->first();
         if ($permission) {
             $permission->delete();
-        }
-        else {
+        } else {
 //            Permission::create([
 //                'user_id' => $user_id,
 //                'rule_id' => $rule_id
 //            ]);
             $permission = new Permission();
-            $permission->user_id=$user_id;
-            $permission->rule_id=$rule_id;
+            $permission->user_id = $user_id;
+            $permission->rule_id = $rule_id;
             $permission->save();
         }
         return redirect('/users_list');
     }
+
     public function create_user($update)
     {
-        if (Auth::user()->id == 1 && $update == 1)
-        {
+        if (Auth::user()->id == 1 && $update == 1) {
             return view('create_new_user');
-        }
-        elseif ($update == 0) {
+        } elseif ($update == 0) {
             return view('create_new_user', [
                 'currentuser' => Auth::user()
             ]);
-        }
-        else {
+        } else {
             abort(403);
         }
     }
+
     public function save_user(Request $request)
     {
-        if (isset($request->name) && isset($request->password) && isset($request->email))
-        {
-            if (!isset($request->id))
-            {
+        if (isset($request->name) && isset($request->password) && isset($request->email)) {
+            if (!isset($request->id)) {
                 $user = new User();
-            }
-            else {
+            } else {
                 $user = User::query()->where('id', $request->id)->first();
             }
             $user->update([
-                'name'=>$request->name,
-                'password'=>$request->password,
-                'email'=>$request->email
+                'name' => $request->name,
+                'password' => $request->password,
+                'email' => $request->email
             ]);
         }
         return redirect('news');
     }
-    public function save_notify(Request $request) {
+
+    public function save_notify(Request $request)
+    {
         dd($request->all());
+    }
+
+    public function show_article(Request $request, $article_id)
+    {
+        $article = News::query()->where('id', $article_id)->first();
+        if (is_null($article)) {
+            return view('not_found');
+        }
+        else {
+            return view('single_article', [
+                'article' => $article
+            ]);
+        }
+    }
+    public function search_news(Request $request)
+    {
+        $search = $request->search ?? '';
+        $news = News::query()->where('name', 'like', '%'.$search.'%')->get();
+        foreach ($news as $article) {
+            $article -> item_url = '/show_article/'.$article->id;
+            $article->url = '/create_news?id=' . $article->id;
+        }
+        $users_list = User::query()->get();
+        $news = json_encode($news);
+        return view('news', [
+            'news' => $news,
+            'users' => $users_list,
+            'canupdate' => $this->getPermissions(2),
+            'candelete' => $this->getPermissions(3),
+            'cancreate' => $this->getPermissions(1)
+        ]);
     }
 }

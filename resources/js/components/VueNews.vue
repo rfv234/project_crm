@@ -18,12 +18,16 @@
     <h3>Все новости</h3>
     <hr>
     <div v-for="novelty in news">
-      <span>{{ novelty.name }}</span>
+      <a v-bind:href=novelty.item_url>
+        <span>{{ novelty.name }}</span>
+      </a>
       <hr>
     </div>
   </div>
   <div v-for="item in news" id="news">
-    <h2>{{ item.name }}</h2>
+    <a v-bind:href=item.item_url>
+      <h2>{{ item.name }}</h2>
+    </a>
     <br>
     <img v-if="item.photo" v-bind:src=item.photo>
     <br>
