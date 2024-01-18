@@ -8,6 +8,7 @@ use App\Http\Requests\NewsRequest;
 use App\Models\News;
 use App\Models\Permission;
 use App\Models\User;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,9 +19,9 @@ class NewsController extends Controller
     {
         $news_list = \App\Models\News::query()->orderByDesc('order')->get();
         foreach ($news_list as $article) {
-            $article -> item_url = '/show_article/'.$article->id;
+            $article->item_url = '/show_article/' . $article->id;
             $article->url = '/create_news?id=' . $article->id;
-    }
+        }
         $users_list = User::query()->get();
         $news_list = json_encode($news_list);
         return view('news', [
@@ -167,19 +168,19 @@ class NewsController extends Controller
         $article = News::query()->where('id', $article_id)->first();
         if (is_null($article)) {
             return view('not_found');
-        }
-        else {
+        } else {
             return view('single_article', [
                 'article' => $article
             ]);
         }
     }
+
     public function search_news(Request $request)
     {
         $search = $request->search ?? '';
-        $news = News::query()->where('name', 'like', '%'.$search.'%')->get();
+        $news = News::query()->where('name', 'like', '%' . $search . '%')->get();
         foreach ($news as $article) {
-            $article -> item_url = '/show_article/'.$article->id;
+            $article->item_url = '/show_article/' . $article->id;
             $article->url = '/create_news?id=' . $article->id;
         }
         $users_list = User::query()->get();
@@ -192,4 +193,36 @@ class NewsController extends Controller
             'cancreate' => $this->getPermissions(1)
         ]);
     }
+
+    public function test_api(Request $request)
+    {
+//        if (isset($request->search)) {
+//            $search = $request->search ?? '';
+//            $news = News::query()->where('name', 'like', '%' . $search . '%')->get()->pluck('name');
+//        }
+//        else {
+//            $news = News::query()->get()->pluck('name');
+//        }
+
+        $news = News::query()->when(isset($request->search), static function (Builder $builder) use ($request) {
+            $builder->where('name', 'like', '%' . $request->search . '%');
+        })->get()->pluck('name');
+        $result = json_encode($news);
+        return response()->json($result);
+    }
+    public function get_user_info(Request $request)
+    {
+        if (!isset($request->id)) {
+            $result = [
+                'status' => 'error',
+                'message' => 'bad input data'
+            ];
+        }
+        else {
+            $info = User::query()->where('id', $request->id)->first();
+            $result = json_encode($info);
+        }
+        return response()->json($result);
+    }
+    // поговрить про функцию config + css стили (оформить всё красиво).
 }
