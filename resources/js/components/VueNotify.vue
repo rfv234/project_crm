@@ -1,7 +1,7 @@
 <template>
   <form v-on:submit="onSubmit" action="/save_notify" ref="form">
     <p>
-      <input type="hidden" name="sender_id" v-model="sender_id" v-bind:value="currentuser">
+<!--      <input type="hidden" name="sender_id" v-model="sender_id" v-bind:value="currentuser">-->
     </p>
     <p>
       <span>Получатель сообщения: </span>

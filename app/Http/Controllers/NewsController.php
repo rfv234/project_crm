@@ -210,6 +210,7 @@ class NewsController extends Controller
         $result = json_encode($news);
         return response()->json($result);
     }
+
     public function get_user_info(Request $request)
     {
         if (!isset($request->id)) {
@@ -217,12 +218,18 @@ class NewsController extends Controller
                 'status' => 'error',
                 'message' => 'bad input data'
             ];
-        }
-        else {
+        } else {
             $info = User::query()->where('id', $request->id)->first();
             $result = json_encode($info);
         }
         return response()->json($result);
     }
-    // поговрить про функцию config + css стили (оформить всё красиво).
+
+    public function save_chat(Request $request)
+    {
+        dd($request->all());
+    }
+    // создать миграцию, которая делает таблицу для чатов (поле для чатов json)
+    // создать модель для чатов
+    // создать объект и сохранить в базу
 }

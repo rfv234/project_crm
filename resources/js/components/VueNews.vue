@@ -1,19 +1,23 @@
 <template>
-  <a href="/users_list">
-    <button>Перейти к списку всех пользователей</button>
-  </a>
-  <a href="/create_user/1" v-if="cancreatenewuser">
-    <button>Создать нового пользователя</button>
-  </a>
-  <a href="/create_user/0">
-    <button>Редактировать данные пользователя</button>
-  </a>
-  <div id="ngs">Народная премия NGS.RU</div>
- <div class="edit">
-   <a href='/create_news' v-if="cancreate">
-     <button>Создать новость</button>
-   </a>
- </div>
+  <img src="\images\bgfb-54.png" id="ngsup">
+  <div id="upblock">
+    <a href="/users_list">
+      <button class="upnews">Перейти к списку всех пользователей</button>
+    </a>
+    <a href="/create_user/1" v-if="cancreatenewuser">
+      <button class="upnews">Создать нового пользователя</button>
+    </a>
+    <a href="/create_user/0">
+      <button class="upnews">Редактировать данные пользователя</button>
+    </a>
+  </div>
+  <hr>
+  <div class="create">
+    <a href='/create_news' v-if="cancreate">
+      <button class="upnews">Создать новость</button>
+    </a>
+  </div>
+  <hr>
   <div id="all_news">
     <h3>Все новости</h3>
     <hr>
@@ -33,10 +37,10 @@
     <br>
     <span>{{ item.text }}</span>
     <br>
-    <span>Автор: {{this.users[item.author_id-1].name}}</span>
+    <span>Автор: {{ this.users[item.author_id - 1].name }}</span>
     <div class="edit">
       <a v-bind:href=item.url class="url" v-if="canupdate">
-        <button>Редактировать</button>
+        <button class="downnews">Редактировать</button>
       </a>
     </div>
   </div>
@@ -46,11 +50,11 @@
 export default {
   name: "VueNews",
   props: [
-      'news',
-      'users',
-      'canupdate',
-      'cancreate',
-      'currentuser'
+    'news',
+    'users',
+    'canupdate',
+    'cancreate',
+    'currentuser'
   ],
   data() {
     return {
@@ -66,14 +70,10 @@ export default {
 </script>
 
 <style scoped>
-#ngs {
-  background-color: midnightblue;
+
+#ngsup {
   width: 100%;
-  height: 50px;
-  color: greenyellow;
-  text-align: center;
-  font-size: 24px;
-  font-family: sans-serif;
+  height: 300px;
 }
 
 #all_news {
@@ -105,7 +105,59 @@ img {
   justify-content: right;
 }
 
+.create {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 .url {
   display: block;
+}
+
+.upnews {
+  text-decoration: none;
+  display: inline-block;
+  color: white;
+  padding: 20px 30px;
+  margin: 10px 20px;
+  border-radius: 10px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-image: linear-gradient(to right, #9EEFE1 0%, #4830F0 51%, #9EEFE1 100%);
+  background-size: 200% auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+  transition: .5s;
+}
+
+.upnews:hover {
+  background-position: right center;
+}
+
+#upblock {
+  text-align: center;
+}
+
+.downnews {
+  text-decoration: none;
+  display: inline-block;
+  color: white;
+  padding: 10px 15px;
+  margin: 5px 10px;
+  border-radius: 7px;
+  font-family: 'Montserrat', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background-image: linear-gradient(to right, #9EEFE1 0%, #4830F0 51%, #9EEFE1 100%);
+  background-size: 100% auto;
+  box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+  transition: .5s;
+}
+
+a {
+  text-decoration: none;
+  color: white;
 }
 </style>

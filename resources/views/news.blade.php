@@ -4,12 +4,24 @@
     <style>
         body {
             margin: 0 !important;
+            background: url('/images/blur.jpg') no-repeat;
+            background-size: cover;
+            backdrop-filter: blur(7px);
         }
+
         #user {
             border: solid 2px;
-            width: 100%;
+            width: 100px;
             margin: 20px;
             text-align: center;
+            position: absolute;
+            right: 0;
+            top: 180px;
+        }
+
+        #search {
+            position: absolute;
+            top: 180px;
         }
     </style>
 </head>
@@ -20,7 +32,7 @@
         <button id="exit_button">Выход</button>
     </a>
 </div>
-<div>
+<div id="search">
     <form action="/search_news">
         <input type="text" placeholder="Найти новость" name="search">
         <input value="Найти" type="submit">
@@ -33,10 +45,10 @@
               :cancreate="{{$cancreate}}"
               :currentuser="{{\Illuminate\Support\Facades\Auth::user()->id}}">
     </vue-news>
-{{--    <vue-notify :users="{{$users}}"--}}
-{{--                :currentuser="{{\Illuminate\Support\Facades\Auth::user()->id}}">--}}
+    {{--    <vue-notify :users="{{$users}}"--}}
+    {{--                :currentuser="{{\Illuminate\Support\Facades\Auth::user()->id}}">--}}
 
-{{--    </vue-notify>--}}
+    {{--    </vue-notify>--}}
     <vue-chat></vue-chat>
 </div>
 <script src="{{mix('js/app.js')}}"></script>

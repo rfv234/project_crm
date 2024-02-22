@@ -36,3 +36,4 @@ Route::get('/delete_user/{user_id}', [\App\Http\Controllers\NewsController::clas
 Route::get('/save_notify', [\App\Http\Controllers\NewsController::class, 'save_notify']);
 Route::get('/show_article/{article_id}', [\App\Http\Controllers\NewsController::class, 'show_article']);
 Route::get('/search_news', [\App\Http\Controllers\NewsController::class, 'search_news']);
+Route::post('/save_chat', [\App\Http\Controllers\NewsController::class, 'save_chat']);
