@@ -49,7 +49,7 @@
     {{--                :currentuser="{{\Illuminate\Support\Facades\Auth::user()->id}}">--}}
 
     {{--    </vue-notify>--}}
-    <vue-chat></vue-chat>
+    <vue-chat :currentuser="{{\Illuminate\Support\Facades\Auth::user()->id}}"></vue-chat>
 </div>
 <script src="{{mix('js/app.js')}}"></script>
 </body>

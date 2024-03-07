@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\NewsRequest;
+use App\Models\Chat;
 use App\Models\News;
 use App\Models\Permission;
 use App\Models\User;
@@ -227,9 +228,23 @@ class NewsController extends Controller
 
     public function save_chat(Request $request)
     {
-        dd($request->all());
+        $chat = $request->chat;
+        $user_id = $request->user_id;
+        $user_chat = Chat::query()->where('user_id', $user_id)->first();
+        if (!$user_chat) {
+            $newChat = new Chat();
+            $newChat->chat = $chat;
+            $newChat->user_id = $user_id;
+            $newChat->save();
+        } else {
+            $user_chat->chat = $chat;
+            $user_chat->save();
+        }
     }
-    // создать миграцию, которая делает таблицу для чатов (поле для чатов json)
-    // создать модель для чатов
-    // создать объект и сохранить в базу
+    public function open_all() {
+        $all = Chat::query()->whereNotNull('user_id')->get();
+        return view('all_chats', [
+            'all_chats' => $all
+        ]);
+    }
 }

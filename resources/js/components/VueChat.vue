@@ -13,6 +13,9 @@
 <script>
 export default {
   name: "VueChat",
+  props: [
+    'currentuser'
+  ],
   data() {
     return {
       chat: [
@@ -26,7 +29,7 @@ export default {
         }
       ],
       new_message: '',
-      responce_count: 0
+      responce_count: 0,
     }
   },
   methods: {
@@ -39,7 +42,8 @@ export default {
       setTimeout(this.responce_message, 2500);
       if (this.responce_count < 2) {
         axios.post('/save_chat', {
-          chat: this.chat
+          chat: this.chat,
+          user_id: this.currentuser
         }).catch(e => {
           console.log(e);
         })

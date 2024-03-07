@@ -1,1 +1,1 @@
-C:\Users\Bogdan\OSPanel\modules\php\PHP_7.3\php.exe %1 %2 %3 %4
+C:\OSPanel\modules\php\PHP_7.4\php.exe %1 %2 %3 %4

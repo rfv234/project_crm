@@ -14927,6 +14927,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "VueChat",
+  props: ['currentuser'],
   data: function data() {
     return {
       chat: [{
@@ -14950,7 +14951,8 @@ __webpack_require__.r(__webpack_exports__);
       setTimeout(this.responce_message, 2500);
       if (this.responce_count < 2) {
         axios.post('/save_chat', {
-          chat: this.chat
+          chat: this.chat,
+          user_id: this.currentuser
         })["catch"](function (e) {
           console.log(e);
         });
