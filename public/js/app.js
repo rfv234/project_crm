@@ -14938,7 +14938,8 @@ __webpack_require__.r(__webpack_exports__);
         id: 'bot'
       }],
       new_message: '',
-      responce_count: 0
+      responce_count: 0,
+      file: null
     };
   },
   methods: {
@@ -14950,9 +14951,14 @@ __webpack_require__.r(__webpack_exports__);
       });
       setTimeout(this.responce_message, 2500);
       if (this.responce_count < 2) {
-        axios.post('/save_chat', {
-          chat: this.chat,
-          user_id: this.currentuser
+        var formData = new FormData();
+        formData.append('file', this.$refs.file.files[0]);
+        formData.append('chat', this.chat);
+        formData.append('user_id', this.currentuser);
+        axios.post('/save_chat', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         })["catch"](function (e) {
           console.log(e);
         });
@@ -15222,6 +15228,16 @@ var _hoisted_1 = {
   id: "general"
 };
 var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+});
+var _hoisted_3 = {
+  type: "file",
+  ref: "file"
+};
+var _hoisted_4 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1 /* HOISTED */);
+});
+var _hoisted_5 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     type: "submit"
   }, null, -1 /* HOISTED */);
@@ -15242,7 +15258,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return $data.new_message = $event;
     }),
     placeholder: "Введите сообщение"
-  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.new_message]]), _hoisted_2], 32 /* HYDRATE_EVENTS */)]);
+  }, null, 512 /* NEED_PATCH */), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.new_message]]), _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", _hoisted_3, null, 512 /* NEED_PATCH */), _hoisted_4, _hoisted_5], 32 /* HYDRATE_EVENTS */)]);
 }
 
 /***/ }),

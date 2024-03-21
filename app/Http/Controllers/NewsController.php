@@ -228,6 +228,7 @@ class NewsController extends Controller
 
     public function save_chat(Request $request)
     {
+        dd($request->all());
         $chat = $request->chat;
         $user_id = $request->user_id;
         $user_chat = Chat::query()->where('user_id', $user_id)->first();

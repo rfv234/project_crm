@@ -5,6 +5,9 @@
         <span>{{ item.message }}</span>
       </div>
       <input type="text" v-model=new_message placeholder="Введите сообщение">
+      <br>
+      <input type="file" ref=file>
+      <br>
       <input type="submit">
     </form>
   </div>
@@ -30,6 +33,7 @@ export default {
       ],
       new_message: '',
       responce_count: 0,
+      file: null,
     }
   },
   methods: {
@@ -41,10 +45,16 @@ export default {
       });
       setTimeout(this.responce_message, 2500);
       if (this.responce_count < 2) {
-        axios.post('/save_chat', {
-          chat: this.chat,
-          user_id: this.currentuser
-        }).catch(e => {
+        let formData = new FormData();
+        formData.append('file', this.$refs.file.files[0]);
+        formData.append('chat', this.chat);
+        formData.append('user_id', this.currentuser);
+        axios.post('/save_chat', formData,
+            {
+              headers: {
+                'Content-Type': 'multipart/form-data'
+              }
+            }).catch(e => {
           console.log(e);
         })
       }
