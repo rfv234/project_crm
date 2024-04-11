@@ -228,17 +228,23 @@ class NewsController extends Controller
 
     public function save_chat(Request $request)
     {
-        dd($request->all());
         $chat = $request->chat;
         $user_id = $request->user_id;
         $user_chat = Chat::query()->where('user_id', $user_id)->first();
         if (!$user_chat) {
+            $files = [];
             $newChat = new Chat();
             $newChat->chat = $chat;
             $newChat->user_id = $user_id;
             $newChat->save();
+            $files[] = $this->save_file($request, $newChat->id);
+            $newChat->file = json_encode($files);
+            $newChat->save();
         } else {
+            $files = json_decode($user_chat->file) ?? [];
             $user_chat->chat = $chat;
+            $files[] = $this->save_file($request, $user_chat->id);
+            $user_chat->file = json_encode($files);
             $user_chat->save();
         }
     }
@@ -247,5 +253,12 @@ class NewsController extends Controller
         return view('all_chats', [
             'all_chats' => $all
         ]);
+    }
+    private function save_file(Request $request, $chat_id) {
+        $file_directory = '/chat_files/chat_'.$chat_id.'/';
+        //dd($file_directory, $request->file('file'));
+        //file_put_contents($file_directory, file_get_contents($request->file('file')->getRealPath()));
+        $path = $request->file->storeAs($file_directory, $request->file('file')->getClientOriginalName());
+        return $path;
     }
 }

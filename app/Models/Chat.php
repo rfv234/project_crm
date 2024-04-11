@@ -10,6 +10,7 @@ class Chat extends Model
 {
     protected $table = 'chats';
     protected $casts = [
-        'chat' => 'array'
+        'chat' => 'array',
+        'file' => 'array'
     ];
 }
