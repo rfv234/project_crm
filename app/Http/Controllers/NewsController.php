@@ -259,6 +259,14 @@ class NewsController extends Controller
         //dd($file_directory, $request->file('file'));
         //file_put_contents($file_directory, file_get_contents($request->file('file')->getRealPath()));
         $path = $request->file->storeAs($file_directory, $request->file('file')->getClientOriginalName());
+        $request->file->move(public_path($file_directory), $path);
         return $path;
+    }
+    public function open_files() {
+        //dd(storage_path());
+        $chats = Chat::query()->whereNotNull('file')->get();
+        return view('chat_files_list', [
+            'chats' => $chats
+        ]);
     }
 }
