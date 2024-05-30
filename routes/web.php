@@ -39,3 +39,5 @@ Route::get('/search_news', [\App\Http\Controllers\NewsController::class, 'search
 Route::post('/save_chat', [\App\Http\Controllers\NewsController::class, 'save_chat']);
 Route::get('/all_chats', [\App\Http\Controllers\NewsController::class, 'open_all']);
 Route::get('/all_files', [\App\Http\Controllers\NewsController::class, 'open_files']);
+Route::get('/chats', [\App\Http\Controllers\NewsController::class, 'open_chats']);
+Route::get('/chat', [\App\Http\Controllers\NewsController::class, 'find_chat']);

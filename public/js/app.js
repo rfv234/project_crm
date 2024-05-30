@@ -14953,7 +14953,7 @@ __webpack_require__.r(__webpack_exports__);
       if (this.responce_count < 2) {
         var formData = new FormData();
         formData.append('file', this.$refs.file.files[0]);
-        formData.append('chat', this.chat);
+        formData.append('chat', JSON.stringify(this.chat));
         formData.append('user_id', this.currentuser);
         axios.post('/save_chat', formData, {
           headers: {

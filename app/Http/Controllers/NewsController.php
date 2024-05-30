@@ -228,7 +228,7 @@ class NewsController extends Controller
 
     public function save_chat(Request $request)
     {
-        $chat = $request->chat;
+        $chat = $request->all();
         $user_id = $request->user_id;
         $user_chat = Chat::query()->where('user_id', $user_id)->first();
         if (!$user_chat) {
@@ -237,13 +237,17 @@ class NewsController extends Controller
             $newChat->chat = $chat;
             $newChat->user_id = $user_id;
             $newChat->save();
-            $files[] = $this->save_file($request, $newChat->id);
+            if ($request->file('file')) {
+                $files[] = $this->save_file($request, $newChat->id);
+            }
             $newChat->file = json_encode($files);
             $newChat->save();
         } else {
             $files = json_decode($user_chat->file) ?? [];
             $user_chat->chat = $chat;
-            $files[] = $this->save_file($request, $user_chat->id);
+            if ($request->file('file')) {
+                $files[] = $this->save_file($request, $user_chat->id);
+            }
             $user_chat->file = json_encode($files);
             $user_chat->save();
         }
@@ -267,6 +271,18 @@ class NewsController extends Controller
         $chats = Chat::query()->whereNotNull('file')->get();
         return view('chat_files_list', [
             'chats' => $chats
+        ]);
+    }
+    public function open_chats() {
+        $chats = Chat::query()->get();
+        return view('chats', [
+            'chats' => $chats
+        ]);
+    }
+    public function find_chat(Request $request) {
+        $chat = Chat::query()->where('id', $request->id)->first();
+        return view('1_chat', [
+            'chat' => $chat
         ]);
     }
 }
